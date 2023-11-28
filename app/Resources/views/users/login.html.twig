@@ -1,0 +1,37 @@
+{% extends "base.html.twig" %}
+{% block title %}{{ title }}{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h1 class="text-center">Login</h1>
+    <hr>
+
+    <div class="d-flex flex-column align-items-center w-100">
+        
+        {% if error %}
+        <div class="alert alert-danger" role="alert">
+            {{ error.messageKey|trans(error.messageData, 'security') }}
+        </div>
+        {% endif %}
+
+        <form action="{{ path('login') }}" method="post" class="w-100 form-login needs-validation" novalidate>
+            <div class="form-group">
+                <label for="email" class="form-label">Email:</label>
+                <input type="text" class="form-control" name="_username" id="username" value="{{ last_email }}" required>
+            </div>
+
+            <div class="form-group">
+                <label for="password" class="form-label">Senha:</label>
+                <input type="password" class="form-control mb-3" name="_password" id="password" required>
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100">Entrar</button>
+
+            <div class="mt-2">
+                Não possui conta? <a href="{{ path('register') }}" class="link-underline-light">Registre-se</a>
+            </div>
+        </form>
+    </div>
+</div>
+<script src="{{ asset('js/main.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends "base.html.twig" %}
+{% block title %}{{ title }}{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h1 class="text-center">Lista de categorias</h1>
+    {% if is_granted('ROLE_ADMIN') %}
+    <div class="d-flex justify-content-end">
+      <a href="{{ path('newCategory') }}" class="btn btn-primary btn-sm">Adicionar categoria</a>
+    </div>
+    <hr>
+    {% endif %}
+
+    {% if categories is not empty %}
+    <div class="d-flex justify-content-center ">
+      <table class="table table-striped table-hover table-category">
+        <thead>
+          <tr>
+            <th scope="col">Nome</th>
+            <th scope="col">Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for category in categories %}
+            <tr scope="row">
+                <td>{{ category.name }}</td>
+                <td>
+                  <a href="{{ path('updateCategory', {id: category.id}) }}" class="btn btn-primary btn-sm">Editar</a>
+                  {% if is_granted('ROLE_ADMIN') %}
+                  <a href="{{ path('deleteCategory', {id: category.id}) }}" class="btn btn-danger btn-sm">Excluir</a>
+                  {% endif %}
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    </div>
+    {% else %}
+    <h2 class="text-center">Nenhuma categoria encontrada!</h2>
+    {% endif %}   
+</div>
+{% endblock %}

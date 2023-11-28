@@ -1,0 +1,32 @@
+{% extends "base.html.twig" %}
+{% block title %}{{ title }}{% endblock %}
+
+{% block body %}
+
+<div class="container">
+    <h1 class="text-center">Informações da empresa</h1>
+    <hr>
+
+    {% if msgError %}
+    <div class="alert alert-danger" role="alert">
+        {{ msgError }}
+    </div>
+    {% endif %}
+
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">{{ company.titulo }}</h5>
+            <p class="card-text">{{ company.descricao }}</p>
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item"><strong>Telefone:</strong> {{ company.telefone }}</li>
+            <li class="list-group-item"><strong>Endereço:</strong> {{ company.endereco }}</li>
+            <li class="list-group-item"><strong>CEP:</strong> {{ company.cep }}</li>
+            <li class="list-group-item"><strong>Cidade:</strong> {{ company.cidade }}</li>
+            <li class="list-group-item"><strong>Estado:</strong> {{ company.estado }}</li>
+            <li class="list-group-item"><strong>Categoria:</strong> {{ company.categoria }}</li>
+        </ul>
+    </div>
+</div>
+
+{% endblock %}

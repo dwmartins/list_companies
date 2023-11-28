@@ -1,0 +1,49 @@
+{% extends "base.html.twig" %}
+{% block title %}{{ title }}{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h1 class="text-center">Lista de empresas</h1>
+    {% if is_granted('ROLE_ADMIN') %}
+    <div class="d-flex justify-content-end ">
+      <a href="{{ path('newCompany') }}" class="btn btn-primary btn-sm">Adicionar empresa</a>
+    </div>
+    <hr>
+    {% endif %}
+
+    {% if companies is not empty %}
+    <table class="table table-striped table-hover">
+        <thead>
+          <tr>
+            <th scope="col">Titulo</th>
+            <th scope="col">Descrição</th>
+            <th scope="col">Categoria</th>
+            <th scope="col">Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for company in companies %}
+            <tr scope="row">
+                <td>{{ company.titulo }}</td>
+                <td>{{ company.descricao }}</td>
+                <td>{% for category in company.getCategories() %}
+                      {{ category.getName() }}{% if not loop.last %}, {% endif %}
+                    {% endfor %}</td>
+                <td>
+                  <a href="{{ path('searchCompany', {id: company.id}) }}" class="btn btn-primary btn-sm">Visualizar</a>
+                  {% if is_granted('ROLE_ADMIN') %}
+                  <a href="{{ path('deleteCompany', {id: company.id}) }}" class="btn btn-danger btn-sm">Excluir</a>
+                  {% endif %}
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <h2 class="text-center">Nenhuma empresa encontrada!</h2>
+    {% endif %}   
+</div>
+{% endblock %}
+
+
+

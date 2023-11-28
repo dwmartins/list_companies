@@ -1,0 +1,21 @@
+{% extends "base.html.twig" %}
+{% block title %}{{ title }}{% endblock %}
+
+{% block body %}
+<section class="container">
+    <h1 class="text-center">Buscar empresa</h1>
+    <hr>
+    <div class="w-100 mt-4 d-flex flex-column align-items-center">
+        <form action="/listCompanies" method="post" class="needs-validation form-search-company w-100 d-flex align-items-center gap-2" novalidate>
+            <div class="w-100">
+                <input type="text" class="form-control" name="search" placeholder="Digite sua busca aqui..." required>
+            </div>
+            <div>
+                <button class="btn btn-primary" type="submit">Buscar</button>
+            </div>
+        </form>
+    </div>
+    
+</div>
+<script src="{{ asset('js/main.js') }}"></script>
+{% endblock %}

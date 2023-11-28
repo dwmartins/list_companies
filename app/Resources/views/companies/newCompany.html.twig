@@ -1,0 +1,31 @@
+{% extends "base.html.twig" %}
+{% block title %}{{ title }}{% endblock %}
+
+{% block body %}
+
+<div class="container">
+    <h1 class="text-center">Adicionar nova empresa</h1>
+    <hr>
+
+    {% if msgSuccess %}
+        <p class="text-center text-success">{{ msgSuccess }}</p>
+    {% endif %}
+    
+    <div class="d-flex flex-column align-items-center">
+        {{ form_start(form, {'attr': {'class': 'w-100 form-create-company needs-validation', 'novalidate': 'novalidate'}}) }}
+        {{ form_row(form.titulo, {'attr': {'class': 'form-control'}}) }}
+        {{ form_row(form.telefone, {'attr': {'class': 'form-control'}}) }}
+        {{ form_row(form.endereco, {'attr': {'class': 'form-control'}}) }}
+        {{ form_row(form.cep, {'attr': {'class': 'form-control'}}) }}
+        {{ form_row(form.cidade, {'attr': {'class': 'form-control'}}) }}
+        {{ form_row(form.estado, {'attr': {'class': 'form-control'}}) }}
+        {{ form_row(form.categories, {'attr': {'class': 'form-control d-flex gap-2'}}) }}
+        {{ form_row(form.descricao, {'attr': {'class': 'form-control mb-2'}}) }}
+        {{ form_row(form.Adicionar, {'attr': {'class': 'btn btn-primary'}}) }}
+        {{ form_widget(form) }}
+        {{ form_end(form) }}
+    </div>
+    
+</div>
+<script src="{{ asset('js/main.js') }}"></script>
+{% endblock %}

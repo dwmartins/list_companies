@@ -1,0 +1,23 @@
+.form-search-company {
+    max-width: 600px !important;
+}
+
+.form-create-company {
+    max-width: 600px !important;
+}
+
+.form-register-user {
+    max-width: 400px;
+}
+
+.form-login {
+    max-width: 340px;
+}
+
+.form-new-category {
+    max-width: 310px;
+}
+
+.table-category {
+    max-width: 600px !important;
+}
